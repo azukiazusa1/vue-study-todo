@@ -12,7 +12,7 @@
       </span>
     </div>
     <div class="px-4">
-      <button class="btn btn-primary mr-2">更新</button>
+      <button class="btn btn-primary mr-2" @click="handleUpdateClick">更新</button>
       <button class="btn btn-danger">削除</button>
     </div>
   </li>
@@ -29,5 +29,14 @@ export default defineComponent({
       required: true,
     }
   },
+  setup(props, { emit }) {
+    const handleUpdateClick = () => {
+      emit('on-update-click', props.todo.id)
+    }
+
+    return {
+      handleUpdateClick
+    }
+  }
 })
 </script>

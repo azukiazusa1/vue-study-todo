@@ -15,8 +15,18 @@ export const useTodoStore = () => {
     todos.value.push(data.todo)
   }
 
+  const updateTodo = async (id: number) => {
+    const index = todos.value.findIndex(todo => todo.id === id)
+    if (index === -1) {
+      throw new Error(`id ${id} is not found.`)
+    }
+    await httpClient.put(`/todos/${id}`, { done: !todos.value[index].done })
+    todos.value[index].done = !todos.value[index].done
+  }
+
   return {
     todos,
-    addTodo
+    addTodo,
+    updateTodo
   }
 }

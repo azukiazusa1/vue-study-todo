@@ -1,7 +1,9 @@
 <template>
   <div>
     <ul v-for="todo in todos" :key="todo.id" class="list-group">
-      <todo-item :todo="todo" />
+      <todo-item :todo="todo"
+        @on-update-click="updateTodo"
+      />
     </ul>
     <todo-form class="mt-4" @on-submit="addTodo" />
   </div>
@@ -21,11 +23,12 @@ export default defineComponent({
     TodoForm
   },
   setup() {
-    const { todos, addTodo } = useTodoStore()
+    const { todos, addTodo, updateTodo } = useTodoStore()
     
     return {
       todos,
-      addTodo
+      addTodo,
+      updateTodo
     }
   }
 })
