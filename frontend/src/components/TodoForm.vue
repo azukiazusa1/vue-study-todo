@@ -1,5 +1,5 @@
 <template>
-  <form novalidate>
+  <form novalidate @submit.prevent="handleSubmit">
     <div class="form-group">
       <label for="title">Todoを追加する</label>
       <input 
@@ -7,8 +7,7 @@
         id="title" 
         class="form-control" 
         type="text" 
-        placeholder="タイトル" />
-        {{ title }}
+        placeholder="タイトルを入力" />
     </div>
   </form>
 </template>
@@ -17,11 +16,17 @@
 import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
-  setup() {
+  setup(_, { emit }) {
     const title = ref('')
 
+    const handleSubmit = () => {
+      emit('on-submit', title.value)
+      title.value = ''
+    }
+
     return {
-      title
+      title,
+      handleSubmit  
     }
   }
 })
