@@ -1,13 +1,14 @@
 <template>
   <div>
-    <ul v-for="todo in todos" :key="todo.id">
-      <li>{{ todo.title }}</li>
+    <ul v-for="todo in todos" :key="todo.id" class="list-group">
+      <todo-item :todo="todo" />
     </ul>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import TodoItem from './TodoItem.vue'
 import { Todo } from '../types'
 
 const todos: Todo[] = [
@@ -29,6 +30,9 @@ const todos: Todo[] = [
 ]
 
 export default defineComponent({
+  components: {
+    TodoItem
+  },
   setup() {
     return {
       todos
