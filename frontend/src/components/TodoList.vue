@@ -1,5 +1,9 @@
 <template>
-  <div>{{ todos }}</div>
+  <div>
+    <ul v-for="todo in todos" :key="todo.id">
+      <li>{{ todo.title }}</li>
+    </ul>
+  </div>
 </template>
 
 <script lang="ts">
