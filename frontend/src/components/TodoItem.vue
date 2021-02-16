@@ -13,7 +13,7 @@
     </div>
     <div class="px-4">
       <button class="btn btn-primary mr-2" @click="handleUpdateClick">更新</button>
-      <button class="btn btn-danger">削除</button>
+      <button class="btn btn-danger" @click="handleDeleteClick">削除</button>
     </div>
   </li>
 </template>
@@ -34,8 +34,13 @@ export default defineComponent({
       emit('on-update-click', props.todo.id)
     }
 
+    const handleDeleteClick = () => {
+      emit('on-delete-click', props.todo.id)
+    }
+
     return {
-      handleUpdateClick
+      handleUpdateClick,
+      handleDeleteClick
     }
   }
 })

@@ -50,7 +50,7 @@ app.put('/api/todos/:id', (req, res) => {
   res.status(201).json({ message: 'update successful.' })
 })
 
-app.delete('/api/todo/:id', (req, res) => {
+app.delete('/api/todos/:id', (req, res) => {
   const index = todos.findIndex(todo => todo.id === Number(req.params.id))
   if (index === -1) {
     return res.status(400).json({ message: `id ${req.params.id} is not found`})

@@ -24,9 +24,15 @@ export const useTodoStore = () => {
     todos.value[index].done = !todos.value[index].done
   }
 
+  const deleteTodo = async (id: number) => {
+    await httpClient.delete(`/todos/${id}`)
+    todos.value = todos.value.filter(todo => todo.id !== id)
+  }
+
   return {
     todos,
     addTodo,
-    updateTodo
+    updateTodo,
+    deleteTodo
   }
 }

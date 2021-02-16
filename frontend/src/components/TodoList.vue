@@ -3,6 +3,7 @@
     <ul v-for="todo in todos" :key="todo.id" class="list-group">
       <todo-item :todo="todo"
         @on-update-click="updateTodo"
+        @on-delete-click="deleteTodo"
       />
     </ul>
     <todo-form class="mt-4" @on-submit="addTodo" />
@@ -23,12 +24,13 @@ export default defineComponent({
     TodoForm
   },
   setup() {
-    const { todos, addTodo, updateTodo } = useTodoStore()
+    const { todos, addTodo, updateTodo, deleteTodo } = useTodoStore()
     
     return {
       todos,
       addTodo,
-      updateTodo
+      updateTodo,
+      deleteTodo
     }
   }
 })
