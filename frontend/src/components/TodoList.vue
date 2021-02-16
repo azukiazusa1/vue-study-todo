@@ -27,12 +27,9 @@ export default defineComponent({
       todos.value = data.todos
     })
 
-    const handleSubmit = (title: string) => {
-      todos.value.push({
-        id: todos.value.length + 1,
-        title,
-        done: false
-      })
+    const handleSubmit = async (title: string) => {
+      const { data } = await httpClient.post('/todos', { title })
+      todos.value.push(data.todo)
     }
     
     return {
