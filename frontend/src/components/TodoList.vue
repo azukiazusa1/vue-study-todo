@@ -3,12 +3,14 @@
     <ul v-for="todo in todos" :key="todo.id" class="list-group">
       <todo-item :todo="todo" />
     </ul>
+    <todo-form class="mt-4" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import TodoItem from './TodoItem.vue'
+import TodoForm from './TodoForm.vue'
 import { Todo } from '../types'
 
 const todos: Todo[] = [
@@ -31,7 +33,8 @@ const todos: Todo[] = [
 
 export default defineComponent({
   components: {
-    TodoItem
+    TodoItem,
+    TodoForm
   },
   setup() {
     return {
