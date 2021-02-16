@@ -8,11 +8,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
+import { httpClient } from '../utils/httpClient'
 import TodoItem from './TodoItem.vue'
 import TodoForm from './TodoForm.vue'
 import { Todo } from '../types'
-
 
 export default defineComponent({
   components: {
@@ -20,24 +20,13 @@ export default defineComponent({
     TodoForm
   },
   setup() {
-    const todos = ref<Todo[]>([
-      {
-        id: 1,
-        title: 'todo1',
-        done: true,
-      },
-      {
-        id: 2,
-        title: 'todo2',
-        done: false,
-      },
-      {
-        id: 3,
-        title: 'todo3',
-        done: true,
-      },
-    ])
-    
+    const todos = ref<Todo[]>([])
+
+    onMounted(async () => {
+      const { data } = await httpClient.get('/todos')
+      todos.value = data.todos
+    })
+
     const handleSubmit = (title: string) => {
       todos.value.push({
         id: todos.value.length + 1,
